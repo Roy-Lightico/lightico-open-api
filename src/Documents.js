@@ -1,20 +1,20 @@
 import React from "react";
 
-const Payment = () => {
+const Documents = () => {
   return (
     <div>
       <div className="outer-method" onClick={() => hide()}>
-        <h2 onClick={() => hide()}>Payments</h2>
+        <h2>Documents</h2>
         <h2>
           <i className="fas fa-arrow-right"></i>
         </h2>
       </div>
-      <div style={{ display: "block" }} id="payments">
+      <div style={{ display: "block" }} id="documents">
         <div className="method-block">
           <div className="method-row">
             <p className="method-box">POST</p>
-            <p className="end-point">/v2.6/sessions/*sessionId*/payments</p>
-            <p>Add Payment to session</p>
+            <p className="end-point">/sessions/*sessionId*/documentsRequests</p>
+            <p>Add Document Request to session</p>
           </div>
         </div>
       </div>
@@ -22,9 +22,9 @@ const Payment = () => {
   );
 };
 
-export default Payment;
+export default Documents;
 const hide = () => {
-  let div = document.getElementById("payments");
+  let div = document.getElementById("documents");
   if (div.style.display === "none") {
     div.style.display = "block";
   } else {

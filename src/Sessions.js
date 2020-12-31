@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import CreateNewSession from "./CreateNewSession";
-import { updateSessionData } from "./utils";
+// import { updateSessionData } from "./utils";
 import UpdateSession from "./UpdateSession";
 
 const Sessions = () => {
@@ -14,15 +14,19 @@ const Sessions = () => {
       </div>
       <div style={{ display: "block" }} id="sessions">
         <div className="method-block">
-          <p className="method-box">POST</p>
-          <p className="end-point">/v2.3/sessions</p>
-          <p>Create New Session</p>
+          <div className="method-row" onClick={() => hideNewSession()}>
+            <p className="method-box">POST</p>
+            <p className="end-point">/v2.3/sessions</p>
+            <p>Create New Session</p>
+          </div>
           <CreateNewSession />
         </div>
         <div className="method-block">
-          <p className="patch-method-box">Patch</p>
-          <p className="end-point">/v2.3/sessions/*sessionId*</p>
-          <p> Update Session Data</p>
+          <div className="method-row" onClick={() => hideUpdateSession()}>
+            <p className="patch-method-box">PATCH</p>
+            <p className="end-point">/v2.3/sessions/*sessionId*</p>
+            <p> Update Session Data</p>
+          </div>
           <UpdateSession />
         </div>
       </div>
@@ -31,11 +35,34 @@ const Sessions = () => {
 };
 
 export default Sessions;
+
 const hide = () => {
   let div = document.getElementById("sessions");
-  if (div.style.display === "none") {
-    div.style.display = "block";
-  } else {
-    div.style.display = "none";
+  if (div) {
+    if (div.style.display === "none") {
+      div.style.display = "block";
+    } else {
+      div.style.display = "none";
+    }
+  }
+};
+const hideNewSession = () => {
+  let div = document.getElementById("create-new-session");
+  if (div) {
+    if (div.style.display === "none") {
+      div.style.display = "block";
+    } else {
+      div.style.display = "none";
+    }
+  }
+};
+const hideUpdateSession = () => {
+  let div = document.getElementById("update-session-data");
+  if (div) {
+    if (div.style.display === "none") {
+      div.style.display = "block";
+    } else {
+      div.style.display = "none";
+    }
   }
 };

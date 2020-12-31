@@ -1,4 +1,5 @@
 import React from "react";
+import AddWorkflow from "./AddWorkflow";
 
 const Workflows = () => {
   return (
@@ -11,9 +12,12 @@ const Workflows = () => {
       </div>
       <div style={{ display: "block" }} id="workflows">
         <div className="method-block">
-          <p className="method-box">POST</p>
-          <p className="end-point">/v2.6/sessions/*sessionId*/workflows</p>
-          <p>Add Workflow to session</p>
+          <div className="method-row" onClick={() => hideAddWorkflow()}>
+            <p className="method-box">POST</p>
+            <p className="end-point">/v2.6/sessions/*sessionId*/workflows</p>
+            <p>Add Workflow to session</p>
+          </div>
+          <AddWorkflow />
         </div>
       </div>
     </div>
@@ -27,5 +31,15 @@ const hide = () => {
     div.style.display = "block";
   } else {
     div.style.display = "none";
+  }
+};
+const hideAddWorkflow = () => {
+  let div = document.getElementById("add-workflow");
+  if (div) {
+    if (div.style.display === "none") {
+      div.style.display = "block";
+    } else {
+      div.style.display = "none";
+    }
   }
 };

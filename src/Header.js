@@ -1,6 +1,9 @@
-import React from "react";
-
+import React, { useState } from "react";
+import Authenticate from "./Authenticate";
+import Modal from "./Modal";
 const Header = () => {
+  const [showModal, toggleModal] = useState(false);
+
   return (
     <div className="header-container">
       <div className="header">
@@ -24,9 +27,19 @@ const Header = () => {
           <option>HTTPS</option>
         </select>
         <button type="button" className="auth-btn">
-          <span className="auth-span">Authorize</span>
+          <span className="auth-span" onClick={() => toggleModal(!showModal)}>
+            Authenticate
+          </span>
           <i className="fas fa-unlock"></i>
         </button>
+      </div>
+      <div>
+        {showModal ? (
+          <Modal>
+            <h1>Lightico Authentication</h1>
+            <Authenticate toggleModal={toggleModal} showModal={showModal} />
+          </Modal>
+        ) : null}
       </div>
     </div>
   );

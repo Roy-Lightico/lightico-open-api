@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 const Body = (props) => {
   const {
@@ -20,6 +20,7 @@ const Body = (props) => {
     invokeData,
     sessionId,
     name,
+    documents,
     templateId,
     documentUri,
     embeddedForms,
@@ -33,15 +34,15 @@ const Body = (props) => {
   } = props;
 
   let obj = {
-    sourceName: sourceName,
-    userName: userName,
-    customerName: customerName,
-    phoneNumber: phoneNumber,
-    email: email,
-    sendNow: sendNow,
-    chatEnabled: chatEnabled,
-    attachmentEnabled: attachmentEnabled,
-    autoOpen: autoOpen,
+    sourceName,
+    userName,
+    customerName,
+    phoneNumber,
+    email,
+    sendNow,
+    chatEnabled,
+    attachmentEnabled,
+    autoOpen,
     sessionId,
     invokeData,
     customerData,
@@ -58,6 +59,9 @@ const Body = (props) => {
     participantId,
     role,
     coSigners,
+    documents,
+    emailSubject,
+    smsContent,
   };
 
   return (

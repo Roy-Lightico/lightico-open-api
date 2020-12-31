@@ -86,7 +86,6 @@ export const getSessionId = async (
         "Content-Type": "application/json",
       },
     });
-    // let ID = session.data.sessionId;
     console.log("Got SessionId", session.data);
     return session.data;
   } catch (error) {
@@ -109,13 +108,12 @@ export const auth = async (apiKey, tenantId) => {
     });
     let token = res.data.access_token;
     localStorage.setItem("token", `Bearer ${token}`);
-    return token;
+    return `SUCCESS ${res.status} OK`;
   } catch (error) {
     console.log("My res:", error);
-
     let token = "Authentication Failed";
     let resData = error.response.status;
-    return `${token} and ${resData}`;
+    return `${token} Status ${resData}, Please check your credentials`;
   }
 };
 
@@ -163,6 +161,39 @@ export const addEsign = async (
     console.log("Added Esign To Session Success", eSign.data);
     return `Added Esign To Session Success - ${JSON.stringify(
       eSign.data,
+      undefined,
+      2
+    )}`;
+  } catch (error) {
+    console.log("MY ERROR", error.response);
+    return `ERROR STATUS ${error.response.status} ${JSON.stringify(
+      error.response.data,
+      undefined,
+      2
+    )}`;
+  }
+};
+
+export const addWorkflow = async (sessionId, name, templateId, documents) => {
+  let data = {
+    sessionId,
+    name,
+    templateId,
+    documents,
+  };
+  try {
+    let workflow = await axios({
+      method: "post",
+      url: `https://api.lightico.com/v2.6/sessions/${sessionId}/workflows`,
+      data: data,
+      headers: {
+        Authorization: localStorage.getItem("token"),
+        "Content-Type": "application/json",
+      },
+    });
+    console.log("Added Workflow To Session Success", workflow.data);
+    return `Added Workflow To Session Success - ${JSON.stringify(
+      workflow.data,
       undefined,
       2
     )}`;
